@@ -77,13 +77,15 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice(hasWhippedCream, hasChocolate);
         String priceMessage = createOrderSumary(name, price, hasWhippedCream, hasChocolate);
 
-        Intent intent =  new Intent(Intent.ACTION_SEND);
+        Intent intent =  new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(intent.EXTRA_SUBJECT,"Just Java order for "+name);
         intent.putExtra(intent.EXTRA_TEXT,priceMessage);
         if (intent.resolveActivity(getPackageManager())!=null){
             startActivity(intent);
         }
+
+
     }
 
     private int calculatePrice(boolean addWhippedCream, boolean addChocolate) {
